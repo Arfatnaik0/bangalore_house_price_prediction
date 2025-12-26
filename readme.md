@@ -39,9 +39,6 @@ The project covers **data preprocessing, model training, evaluation, and deploym
 ├── src/
 │ └── model.py
 ├── requirements.txt
-├── output.png
-├── output2.png
-├── output3.png
 └── README.md
 ```
 
