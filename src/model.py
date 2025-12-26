@@ -7,7 +7,7 @@ from sklearn.pipeline import Pipeline
 import joblib
 
 # import dataset
-data=pd.read_csv('../notebook/banglore.csv')
+data=pd.read_csv('../data/banglore.csv')
 
 # fill na values in 'location' column
 data['location']=data['location'].fillna('Other')
