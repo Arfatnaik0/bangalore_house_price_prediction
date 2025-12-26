@@ -84,11 +84,13 @@ preprocessor = ColumnTransformer(
 # final model pipeline
 model=Pipeline(steps=[
     ('preprocessor', preprocessor),
+    # final model trained with cv best parameters
     ('regressor', RandomForestRegressor(n_estimators=300,max_depth=None,min_samples_leaf=1,random_state=42))
 ])
 
-# fit the model
+# train test split and cross-validation done in notebook, here we fit on full data
 model.fit(x,y)
+# CV MAE ≈ 23.17 lakhs, Test MAE ≈ 22.81 lakhs
 
 # save the model and location names
 joblib.dump(model,'../model/bangalore_house_price_model.pkl')
