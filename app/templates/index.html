@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="javascriptreact">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore House Price Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #393939 0%, #2f2f2f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 30px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label[for]:not([for*="Super"]):not([for*="Built-up"]):not([for*="Plot"]):not([for*="Carpet"]):not([for*="Ready"]):not([for*="Not"]) {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .radio{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .fg{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .inps{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .radio-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            width:40%;
+        }
+
+        .radio-group label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 1px;
+            display: block;
+            font-size: 20px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        input[type="radio"] + label {
+            cursor: pointer;
+            color: #555;
+            font-size: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 10px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="number"] {
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 10px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="number  "]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #484848 0%, #121213 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
+            width: 60%;
+            align-self: center;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1c 0%, #363537 100%);
+            color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bangalore House Price Predictor</h1>
+        <form action="/predict" method="post">
+            <div class="radio">
+            <div class="radio-group">
+                <label for="area_type">Enter area type:</label>
+                <div class="radio-option">
+                    <input type="radio" id="Super built-up  Area" name="area_type" value="Super built-up  Area" checked>
+                    <label for="Super built-up  Area">Super Built-up Area</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="Built-up Area" name="area_type" value="Built-up  Area">
+                    <label for="Built-up Area">Built-up Area</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="Plot Area" name="area_type" value="Plot  Area">
+                    <label for="Plot Area">Plot Area</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="Carpet Area" name="area_type" value="Carpet  Area">
+                    <label for="Carpet Area">Carpet Area</label>
+                </div>
+            </div>
+            
+            <div class="radio-group">
+                <label for="availability">Enter availability:</label>
+                <div class="radio-option">
+                    <input type="radio" id="Ready To Move" name="availability" value="Ready To Move" checked>
+                    <label for="Ready To Move">Ready To Move</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="Not ready" name="availability" value="Not ready">
+                    <label for="Not ready">Not ready to move</label>
+                </div>
+            </div>
+            </div>
+
+            <div class="inps">
+            <div class="fg">
+            <div class="form-group">
+                <label for="location">Enter location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="size">BHK:</label>
+                <input type="number" id="size" name="size" required>
+            </div>
+            </div>
+
+            <div class="fg">
+            <div class="form-group">
+                <label for="total_sqft">Total sqft:</label>
+                <input type="number" id="total_sqft" name="total_sqft" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bath">No of bathrooms:</label>
+                <input type="number" id="bath" name="bath" required>
+            </div>
+            </div>
+
+            <div class="fg">
+            <div class="form-group">
+                <label for="balcony">No of balconies:</label>
+                <input type="number" id="balcony" name="balcony" required>
+            </div>
+            </div>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    {% if prediction %}
+        <h2>{{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
