@@ -3,10 +3,11 @@
 A machine learning project that predicts **house prices in Bangalore (in Lakhs)** using structured housing data.  
 The project covers **data preprocessing, model training, evaluation, and deployment** using a Flask web app.
 
-![alt text](output.png)
-![alt text](output2.png)
 
-![alt text](output3.png)
+![alt text](op1.png)
+![alt text](op2.png)
+
+![alt text](op3.png)
 
 ---
 
