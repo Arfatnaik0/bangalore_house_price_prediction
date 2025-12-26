@@ -62,26 +62,34 @@ data.drop('price_per_sqft',axis=1,inplace=True)
 # remove outliers based on total_sqft per bhk
 data=data[data['total_sqft']/data['size']>=250]
 
+# split data into x and y
 x=data.drop('price',axis=1)
 y=data['price']
 
+# create preprocessing and modeling pipeline
 cat_cols=['area_type','availability','location']
 
+# categorical transformer
 cat_transformer = Pipeline(steps=[
     ('onehot', OneHotEncoder(drop='first', handle_unknown='ignore'))
 ])
 
+# preprocessor
 preprocessor = ColumnTransformer(
     transformers=[
         ('cat', cat_transformer, cat_cols)
     ], remainder='passthrough'
 )
 
+# final model pipeline
 model=Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('regressor', RandomForestRegressor(n_estimators=300,max_depth=None,min_samples_leaf=1,random_state=42))
 ])
 
+# fit the model
 model.fit(x,y)
+
+# save the model and location names
 joblib.dump(model,'../model/bangalore_house_price_model.pkl')
 joblib.dump(loc_name,'../model/loc_name.pkl')
